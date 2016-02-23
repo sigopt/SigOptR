@@ -8,6 +8,6 @@ Description: SigOpt is a black box parameter optimization service that uses
     optimization.
 Depends:
     R (>= 3.2.3)
-License: MIT License
+License: The MIT License (MIT)
 LazyData: true
 RoxygenNote: 5.0.1.9000
