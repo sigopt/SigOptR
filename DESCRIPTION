@@ -1,0 +1,13 @@
+Package: SigOptR
+Title: API Wrapper for SigOpt
+Version: 0.0.0.9000
+Authors@R: person("Alexandra", "Johnson", email = "alexandra@sigopt.com", role = c("aut", "cre"))
+Description: SigOpt is a black box parameter optimization service that uses
+    Gaussian processed-backed Bayesian global optimization methods. This package
+    provides an API wrapper for some of the API endpoints most commonly used during
+    optimization.
+Depends:
+    R (>= 3.2.3)
+License: The MIT License (MIT)
+LazyData: true
+RoxygenNote: 5.0.1.9000
