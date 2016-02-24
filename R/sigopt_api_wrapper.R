@@ -1,4 +1,5 @@
 install.packages(c("httr", "jsonlite"), repos="http://cran.us.r-project.org")
+
 library(httr)
 library(jsonlite)
 
@@ -54,7 +55,7 @@ create_observation <- function(experiment_id, body) {
 #' sigopt_GET('/v1/experiments/2269/suggestions', query=list(state="open"))
 sigopt_GET <- function(path, query = NULL, ..., api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
-  req <- GET("https://api.sigopt.com", path = path, query = query, auth)
+  req <- httr::GET("https://api.sigopt.com", path = path, query = query, auth)
   sigopt_check(req)
 
   req
@@ -75,7 +76,7 @@ sigopt_POST <- function(path, body, ..., api_token = sigopt_api_token()) {
 
   body_json <- jsonlite::toJSON(body, auto_unbox = TRUE)
 
-  req <- POST("https://api.sigopt.com", path = path, body = body_json, encode = "json", auth, ..., verbose())
+  req <- httr::POST("https://api.sigopt.com", path = path, body = body_json, encode = "json", auth, ...)
   sigopt_check(req)
 
   req
@@ -89,7 +90,7 @@ sigopt_POST <- function(path, body, ..., api_token = sigopt_api_token()) {
 #' sigopt_auth()
 #' sigopt_auth("client_token")
 sigopt_auth <- function(api_token = sigopt_api_token()) {
-  authenticate(api_token, "")
+  httr::authenticate(api_token, "")
 }
 
 #' Check content returned by the SigOpt API
@@ -116,7 +117,7 @@ sigopt_check <- function(req) {
 #' sigopt_parse(GET("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
 #' sigopt_parse(POST("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
 sigopt_parse <- function(req) {
-  text <- content(req, as="text")
+  text <- httr::content(req, as="text")
   if (identical(text, "")) stop("No output to parse", call. = FALSE)
   jsonlite::fromJSON(text, simplifyVector = FALSE)
 }
