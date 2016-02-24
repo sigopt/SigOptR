@@ -5,6 +5,7 @@ SigOpt's public R client
 
 ```
 # install.packages("devtools")
-library("devtools")
-devtools::install_github("sigopt/SigOptR")
+library(devtools)
+install_github("sigopt/SigOptR")
+library(SigOptR)
 ```
