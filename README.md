@@ -30,7 +30,7 @@ suggestion <- create_suggestion(experiment$id)
 
 Evaluate Your Metric (implement this)
 ```
-values <- evaluate_metric(suggestion)
+value <- evaluate_metric(suggestion)
 ```
 
 Report an Observation 
