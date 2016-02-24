@@ -163,6 +163,6 @@ sigopt_api_token <- function(force = FALSE) {
 #' @seealso \code{\link{sigopt_api_token}}, which this function uses to get the SigOpt API token
 #' @export
 #' @examples
-#' has_api_token()
-has_api_token <- function() !identical(sigopt_api_token(), "")
+#' sigopt_has_api_token()
+sigopt_has_api_token <- function() !identical(sigopt_api_token(), "")
 
