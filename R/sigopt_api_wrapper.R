@@ -9,7 +9,13 @@ library(jsonlite)
 #' @return experiment created by SigOpt
 #' @export
 #' @examples
-#' create_experiment(list(name="R test experiment", parameters=list(list(name="x1", type="double", bounds=list(min=0, max=100)), list(name="x2", type="double", bounds=list(min=0, max=100)))))
+#' create_experiment(list(
+#'   name="R test experiment",
+#'   parameters=list(
+#'     list(name="x1", type="double", bounds=list(min=0, max=100)),
+#'     list(name="x2", type="double", bounds=list(min=0, max=100))
+#'   )
+#' ))
 create_experiment <- function(body) {
   req <- sigopt_POST("v1/experiments", body)
   sigopt_parse(req)
