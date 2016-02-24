@@ -6,6 +6,9 @@ Description: SigOpt is a black box parameter optimization service that uses
     Gaussian processed-backed Bayesian global optimization methods. This package
     provides an API wrapper for some of the API endpoints most commonly used during
     optimization.
+Imports:
+  httr,
+  jsonlite
 Depends:
     R (>= 3.2.3)
 License: MIT License + file LICENSE

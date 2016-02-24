@@ -1,8 +1,3 @@
-install.packages(c("httr", "jsonlite"), repos="http://cran.us.r-project.org")
-
-library(httr)
-library(jsonlite)
-
 #' Create an experiment
 #'
 #' @param body POST body of create request
