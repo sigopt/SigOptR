@@ -3,6 +3,7 @@
 export(create_experiment)
 export(create_observation)
 export(create_suggestion)
+export(franke)
 export(sigopt_GET)
 export(sigopt_POST)
 export(sigopt_has_api_token)
