@@ -118,7 +118,7 @@ sigopt_check <- function(req) {
 #' sigopt_parse(GET("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
 #' sigopt_parse(POST("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
 sigopt_parse <- function(req) {
-  text <- httr::content(req, as="text")
+  text <- httr::content(req, as="text", encoding="UTF-8")
   if (identical(text, "")) stop("No output to parse", call. = FALSE)
   jsonlite::fromJSON(text, simplifyVector = FALSE)
 }
