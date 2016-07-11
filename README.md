@@ -1,5 +1,7 @@
 # SigOptR
-SigOpt's public R client
+SigOpt's public R client.
+
+Learn more about SigOpt and R from our [docs](https://sigopt.com/docs/overview/R).
 
 # Installation
 
@@ -10,32 +12,45 @@ install_github("sigopt/SigOptR")
 library(SigOptR)
 ```
 
-# Usage
+# Authentication
 
-Create an Experiment
+Set the environment variable `SIGOPT_API_TOKEN` to the value of the API Token found on the [user dashboard](https://sigopt.com/user/profile) of signed in users.
+
+```
+Sys.setenv(SIGOPT_API_TOKEN=sigopt_api_token)
+```
+
+# Run Some Code
+Run SigOpt's [Optimization Loop](https://sigopt.com/docs/overview/optimization) for a small function:
 ```
 experiment <- create_experiment(list(
-  name="R test experiment", 
+  name="Franke Optimization",
   parameters=list(
-    list(name="x1", type="double", bounds=list(min=0, max=100)), 
-    list(name="x2", type="double", bounds=list(min=0, max=100))
+    list(name="x", type="double", bounds=list(min=0.0, max=1.0)),
+    list(name="y", type="double", bounds=list(min=0.0, max=1.0))
   )
 ))
-```
+print(paste(
+  "Created experiment: https://sigopt.com/experiment/",
+  experiment$id,
+  sep=""
+))
 
-Receive a Suggestion
-```
-suggestion <- create_suggestion(experiment$id)
-```
+# Evaluate your model with the suggested parameter assignments
+# Franke function - http://www.sfu.ca/~ssurjano/franke2d.html
+evaluate_model <- function(assignments) {
+  return(franke(assignments$x, assignments$y))
+}
 
-Evaluate Your Metric (implement this)
-```
-value <- evaluate_metric(suggestion)
-```
-
-Report an Observation 
-```
-create_observation(experiment$id, list(suggestion=suggestion$id, value=value))
+# Run the Optimization Loop between 10x - 20x the number of parameters
+for(i in 1:20) {
+  suggestion <- create_suggestion(experiment$id)
+  value <- evaluate_model(suggestion$assignments)
+  create_observation(experiment$id, list(
+    suggestion=suggestion$id,
+    value=value
+  ))
+}
 ```
 
 (optional variant) Report an Observation with standard deviation
