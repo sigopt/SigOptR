@@ -57,3 +57,12 @@ for(i in 1:20) {
 ```
 create_observation(experiment$id, list(suggestion=suggestion$id, value=value, value_stddev=value_standard_deviation))
 ```
+
+# Endpoints
+
+SigOptR supports a subset of API enpoints:
+ - `create_experiment`
+ - `create_suggestion`
+ - `create_observation`
+
+These should be sufficient to run SigOpt's [Optimization Loop](https://sigopt.com/docs/overview/optimization).
