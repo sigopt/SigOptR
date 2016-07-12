@@ -16,6 +16,19 @@ create_experiment <- function(body) {
   sigopt_parse(req)
 }
 
+#' Fetch an experiment
+#'
+#' @param experiment_id the id of an experiment to fetch
+#' @param body Url params of GET request
+#' @return SigOpt experiment with id experiment_id
+#' @export
+#' @examples
+#' fetch_experiment(1)
+fetch_experiment <- function(experiment_id, body=NULL) {
+  req <- sigopt_GET(paste("v1/experiments", experiment_id, sep="/"), body)
+  sigopt_parse(req)
+}
+
 #' Create a suggestion for an experiment
 #'
 #' @param experiment_id the id of an experiment to create an suggestion for
