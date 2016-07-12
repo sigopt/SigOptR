@@ -16,6 +16,19 @@ create_experiment <- function(body) {
   sigopt_parse(req)
 }
 
+#' Fetch an experiment
+#'
+#' @param experiment_id the id of an experiment to fetch
+#' @param body Url params of GET request
+#' @return SigOpt experiment with id experiment_id
+#' @export
+#' @examples
+#' fetch_experiment(1)
+fetch_experiment <- function(experiment_id, body=NULL) {
+  req <- sigopt_GET(paste("v1/experiments", experiment_id, sep="/"), body)
+  sigopt_parse(req)
+}
+
 #' Create a suggestion for an experiment
 #'
 #' @param experiment_id the id of an experiment to create an suggestion for
@@ -56,7 +69,7 @@ create_observation <- function(experiment_id, body) {
 #' sigopt_GET('/v1/experiments/2269/suggestions', query=list(state="open"))
 sigopt_GET <- function(path, query = NULL, ..., api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
-  req <- httr::GET("https://api.sigopt.com", path = path, query = query, auth, httr::user_agent("SigOptR/0.0.5"), ...)
+  req <- httr::GET("https://api.sigopt.com", path = path, query = query, auth, httr::user_agent("SigOptR/0.1.0"), ...)
   sigopt_check(req)
 
   req
@@ -77,7 +90,7 @@ sigopt_POST <- function(path, body, ..., api_token = sigopt_api_token()) {
 
   body_json <- jsonlite::toJSON(body, auto_unbox = TRUE)
 
-  req <- httr::POST("https://api.sigopt.com", path = path, body = body_json, encode = "json", auth, httr::user_agent("SigOptR/0.0.5"), ...)
+  req <- httr::POST("https://api.sigopt.com", path = path, body = body_json, encode = "json", auth, httr::user_agent("SigOptR/0.1.0"), ...)
   sigopt_check(req)
 
   req
