@@ -69,7 +69,7 @@ create_observation <- function(experiment_id, body) {
 #' sigopt_GET('/v1/experiments/2269/suggestions', query=list(state="open"))
 sigopt_GET <- function(path, query = NULL, ..., api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
-  req <- httr::GET("https://api.sigopt.com", path = path, query = query, auth, httr::user_agent("SigOptR/0.1.0"), ...)
+  req <- httr::GET(sigopt_api_url(), path = path, query = query, auth, sigopt_api_user_agent(), ...)
   sigopt_check(req)
 
   req
@@ -90,7 +90,7 @@ sigopt_POST <- function(path, body, ..., api_token = sigopt_api_token()) {
 
   body_json <- jsonlite::toJSON(body, auto_unbox = TRUE)
 
-  req <- httr::POST("https://api.sigopt.com", path = path, body = body_json, encode = "json", auth, httr::user_agent("SigOptR/0.1.0"), ...)
+  req <- httr::POST(sigopt_api_url(), path = path, body = body_json, encode = "json", auth, sigopt_api_user_agent(), ...)
   sigopt_check(req)
 
   req
@@ -174,3 +174,27 @@ sigopt_api_token <- function(force = FALSE) {
 #' sigopt_has_api_token()
 sigopt_has_api_token <- function() !identical(sigopt_api_token(), "")
 
+#' Get the SigOpt API url from the SIGOPT_API_URL environment variable or use default
+#' Most users will be ok with the default value
+#'
+#' @return Base url for SigOpt API requests
+#' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
+#' @examples
+#' sigopt_api_url()
+sigopt_api_url <- function() {
+  env <- Sys.getenv("SIGOPT_API_URL")
+
+  if (!identical(env, "")) return(env)
+
+  "https://api.sigopt.com"
+}
+
+#' User agent for current version of SigOptR API Client
+#'
+#' @return User agent
+#' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
+#' @examples
+#' sigopt_api_user_agent()
+sigopt_api_user_agent <- function() {
+  httr::user_agent("SigOptR/0.1.0")
+}
