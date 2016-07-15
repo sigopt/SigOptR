@@ -196,5 +196,5 @@ sigopt_api_url <- function() {
 #' @examples
 #' sigopt_api_user_agent()
 sigopt_api_user_agent <- function() {
-  httr::user_agent("SigOptR/0.1.0")
+  httr::user_agent("SigOptR/0.2.0")
 }
