@@ -67,9 +67,9 @@ create_observation <- function(experiment_id, body) {
 #' @examples
 #' sigopt_GET('/v1/experiments')
 #' sigopt_GET('/v1/experiments/2269/suggestions', query=list(state="open"))
-sigopt_GET <- function(path, query = NULL, ..., api_token = sigopt_api_token()) {
+sigopt_GET <- function(path, query = NULL, api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
-  req <- httr::GET(sigopt_api_url(), path = path, query = query, auth, sigopt_api_user_agent(), ...)
+  req <- httr::GET(sigopt_api_url(), path = path, query = query, auth, sigopt_api_user_agent())
   sigopt_check(req)
 
   req
@@ -85,12 +85,12 @@ sigopt_GET <- function(path, query = NULL, ..., api_token = sigopt_api_token()) 
 #' @export
 #' @examples
 #' sigopt_POST("v1/experiments", NULL)
-sigopt_POST <- function(path, body, ..., api_token = sigopt_api_token()) {
+sigopt_POST <- function(path, body, api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
 
   body_json <- jsonlite::toJSON(body, auto_unbox = TRUE)
 
-  req <- httr::POST(sigopt_api_url(), path = path, body = body_json, encode = "json", auth, sigopt_api_user_agent(), ...)
+  req <- httr::POST(sigopt_api_url(), path = path, body = body_json, encode = "json", auth, sigopt_api_user_agent())
   sigopt_check(req)
 
   req
