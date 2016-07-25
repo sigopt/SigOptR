@@ -16,8 +16,8 @@ json decoding of request object
 Parse content returned by the SigOpt API
 }
 \examples{
-sigopt_parse(GET("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
-sigopt_parse(POST("https://api.sigopt.com", path="v1/experiments/2318", sigopt_auth(sigopt_api_token())))
+sigopt_parse(sigopt_GET("v1/experiments", null))
+sigopt_parse(sigopt_POST("v1/experiments/2318/suggestions", null))
 }
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally

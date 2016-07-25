@@ -113,8 +113,20 @@ sigopt_auth <- function(api_token = sigopt_api_token()) {
 #' @return invisible(), stops if there is an error status code
 #' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally
 #' @examples
-#' sigopt_check(GET("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
-#' sigopt_check(POST("https://api.sigopt.com", path="v1/experiments/2318/suggestions", sigopt_auth(sigopt_api_token())))
+#' sigopt_check(
+#'   httr::GET(
+#'     "https://api.sigopt.com",
+#'     path="v1/experiments",
+#'     sigopt_auth(sigopt_api_token())
+#'   )
+#' )
+#' sigopt_check(
+#'   httr::POST(
+#'     "https://api.sigopt.com",
+#'     path="v1/experiments/2318/suggestions",
+#'     sigopt_auth(sigopt_api_token())
+#'   )
+#' )
 sigopt_check <- function(req) {
   if (req$status_code < 400)return(invisible())
 
@@ -128,8 +140,8 @@ sigopt_check <- function(req) {
 #' @return json decoding of request object
 #' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally
 #' @examples
-#' sigopt_parse(GET("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
-#' sigopt_parse(POST("https://api.sigopt.com", path="v1/experiments/2318", sigopt_auth(sigopt_api_token())))
+#' sigopt_parse(sigopt_GET("v1/experiments", null))
+#' sigopt_parse(sigopt_POST("v1/experiments/2318/suggestions", null))
 sigopt_parse <- function(req) {
   text <- httr::content(req, as="text", encoding="UTF-8")
   if (identical(text, "")) stop("No output to parse", call. = FALSE)
