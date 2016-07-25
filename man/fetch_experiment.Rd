@@ -18,6 +18,6 @@ SigOpt experiment with id experiment_id
 Fetch an experiment
 }
 \examples{
-fetch_experiment(1)
+fetch_experiment(2318)
 }
 

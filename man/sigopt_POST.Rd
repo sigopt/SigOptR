@@ -20,7 +20,7 @@ result of request to SigOpt API, needs to be JSON decoded
 POST request to SigOpt API path, with json encoded body
 }
 \examples{
-sigopt_POST("v1/experiments", NULL)
+sigopt_POST("v1/experiments/2318/suggestions", NULL)
 }
 \seealso{
 \code{\link{sigopt_parse}}, which parses the result of this function

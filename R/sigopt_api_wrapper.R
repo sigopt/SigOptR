@@ -23,7 +23,7 @@ create_experiment <- function(body) {
 #' @return SigOpt experiment with id experiment_id
 #' @export
 #' @examples
-#' fetch_experiment(1)
+#' fetch_experiment(2318)
 fetch_experiment <- function(experiment_id, body=NULL) {
   req <- sigopt_GET(paste("v1/experiments", experiment_id, sep="/"), body)
   sigopt_parse(req)
@@ -36,7 +36,7 @@ fetch_experiment <- function(experiment_id, body=NULL) {
 #' @return suggestion created by SigOpt
 #' @export
 #' @examples
-#' create_suggestion(2269)
+#' create_suggestion(2318)
 create_suggestion <- function(experiment_id, body=NULL) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "suggestions", sep="/"), body)
   sigopt_parse(req)
@@ -49,8 +49,8 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #' @return observation created by SigOpt
 #' @export
 #' @examples
-#' create_observation(2269, list(suggestion=483696, value=99.08))
-#' create_observation(2269, list(suggestion=483696, value=99.58, value_stddev=0.1))
+#' create_observation(2318, list(suggestion=483696, value=99.08))
+#' create_observation(2318, list(suggestion=483696, value=99.58, value_stddev=0.1))
 create_observation <- function(experiment_id, body) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "observations", sep="/"), body)
   sigopt_parse(req)
@@ -84,7 +84,7 @@ sigopt_GET <- function(path, query = NULL, api_token = sigopt_api_token()) {
 #' @seealso \code{\link{sigopt_parse}}, which parses the result of this function
 #' @export
 #' @examples
-#' sigopt_POST("v1/experiments", NULL)
+#' sigopt_POST("v1/experiments/2318/suggestions", NULL)
 sigopt_POST <- function(path, body, api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
 
@@ -114,7 +114,7 @@ sigopt_auth <- function(api_token = sigopt_api_token()) {
 #' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally
 #' @examples
 #' sigopt_check(GET("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
-#' sigopt_check(POST("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
+#' sigopt_check(POST("https://api.sigopt.com", path="v1/experiments/2318/suggestions", sigopt_auth(sigopt_api_token())))
 sigopt_check <- function(req) {
   if (req$status_code < 400)return(invisible())
 
@@ -129,7 +129,7 @@ sigopt_check <- function(req) {
 #' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally
 #' @examples
 #' sigopt_parse(GET("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
-#' sigopt_parse(POST("https://api.sigopt.com", path="v1/experiments", sigopt_auth(sigopt_api_token())))
+#' sigopt_parse(POST("https://api.sigopt.com", path="v1/experiments/2318", sigopt_auth(sigopt_api_token())))
 sigopt_parse <- function(req) {
   text <- httr::content(req, as="text", encoding="UTF-8")
   if (identical(text, "")) stop("No output to parse", call. = FALSE)
