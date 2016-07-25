@@ -4,7 +4,7 @@
 \alias{sigopt_POST}
 \title{POST request to SigOpt API path, with json encoded body}
 \usage{
-sigopt_POST(path, body, ..., api_token = sigopt_api_token())
+sigopt_POST(path, body, api_token = sigopt_api_token())
 }
 \arguments{
 \item{path}{path of SigOpt API url to POST to}
