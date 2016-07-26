@@ -195,5 +195,5 @@ sigopt_api_url <- function() {
 #' @return User agent
 #' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 sigopt_api_user_agent <- function() {
-  httr::user_agent("SigOptR/0.2.0")
+  httr::user_agent("SigOptR/1.0.0")
 }
