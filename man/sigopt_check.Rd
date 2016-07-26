@@ -15,22 +15,6 @@ invisible(), stops if there is an error status code
 \description{
 Check content returned by the SigOpt API
 }
-\examples{
-sigopt_check(
-  httr::GET(
-    "https://api.sigopt.com",
-    path="v1/experiments",
-    sigopt_auth(sigopt_api_token())
-  )
-)
-sigopt_check(
-  httr::POST(
-    "https://api.sigopt.com",
-    path="v1/experiments/5807/suggestions",
-    sigopt_auth(sigopt_api_token())
-  )
-)
-}
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally
 }

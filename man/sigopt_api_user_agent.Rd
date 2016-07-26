@@ -12,9 +12,6 @@ User agent
 \description{
 User agent for current version of SigOptR API Client
 }
-\examples{
-sigopt_api_user_agent()
-}
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 }
