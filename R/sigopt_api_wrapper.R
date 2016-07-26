@@ -64,9 +64,6 @@ create_observation <- function(experiment_id, body) {
 #' @return result of request to SigOpt API, needs to be JSON decoded
 #' @seealso \code{\link{sigopt_parse}}, which parses the result of this function
 #' @export
-#' @examples
-#' sigopt_GET('/v1/experiments')
-#' sigopt_GET('/v1/experiments/5807/suggestions', query=list(state="open"))
 sigopt_GET <- function(path, query = NULL, api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
   req <- httr::GET(sigopt_api_url(), path = path, query = query, auth, sigopt_api_user_agent())
@@ -83,8 +80,6 @@ sigopt_GET <- function(path, query = NULL, api_token = sigopt_api_token()) {
 #' @return result of request to SigOpt API, needs to be JSON decoded
 #' @seealso \code{\link{sigopt_parse}}, which parses the result of this function
 #' @export
-#' @examples
-#' sigopt_POST("v1/experiments/5807/suggestions", NULL)
 sigopt_POST <- function(path, body, api_token = sigopt_api_token()) {
   auth <- sigopt_auth(api_token)
 
@@ -158,8 +153,6 @@ sigopt_api_token <- function(force = FALSE) {
 #' @return TRUE or FALSE
 #' @seealso \code{\link{sigopt_api_token}}, which this function uses to get the SigOpt API token
 #' @export
-#' @examples
-#' sigopt_has_api_token()
 sigopt_has_api_token <- function() !identical(sigopt_api_token(), "")
 
 #' Get the SigOpt API url from the SIGOPT_API_URL environment variable or use default

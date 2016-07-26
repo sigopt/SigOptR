@@ -12,9 +12,6 @@ TRUE or FALSE
 \description{
 Whether or not the SigOpt API token is properly configured
 }
-\examples{
-sigopt_has_api_token()
-}
 \seealso{
 \code{\link{sigopt_api_token}}, which this function uses to get the SigOpt API token
 }
