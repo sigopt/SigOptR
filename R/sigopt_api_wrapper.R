@@ -23,7 +23,7 @@ create_experiment <- function(body) {
 #' @return SigOpt experiment with id experiment_id
 #' @export
 #' @examples
-#' fetch_experiment(5807)
+#' fetch_experiment(5812)
 fetch_experiment <- function(experiment_id, body=NULL) {
   req <- sigopt_GET(paste("v1/experiments", experiment_id, sep="/"), body)
   sigopt_parse(req)
@@ -36,7 +36,7 @@ fetch_experiment <- function(experiment_id, body=NULL) {
 #' @return suggestion created by SigOpt
 #' @export
 #' @examples
-#' create_suggestion(5807)
+#' create_suggestion(5812)
 create_suggestion <- function(experiment_id, body=NULL) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "suggestions", sep="/"), body)
   sigopt_parse(req)
@@ -49,8 +49,8 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #' @return observation created by SigOpt
 #' @export
 #' @examples
-#' create_observation(5807, list(suggestion=1830766, value=99.08))
-#' create_observation(5807, list(suggestion=1830766, value=99.58, value_stddev=0.1))
+#' create_observation(5812, list(suggestion=1830795, value=99.08))
+#' create_observation(5812, list(suggestion=1830795, value=99.58, value_stddev=0.1))
 create_observation <- function(experiment_id, body) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "observations", sep="/"), body)
   sigopt_parse(req)

@@ -18,7 +18,7 @@ observation created by SigOpt
 Create an observation for an experiment
 }
 \examples{
-create_observation(5807, list(suggestion=1830766, value=99.08))
-create_observation(5807, list(suggestion=1830766, value=99.58, value_stddev=0.1))
+create_observation(5812, list(suggestion=1830795, value=99.08))
+create_observation(5812, list(suggestion=1830795, value=99.58, value_stddev=0.1))
 }
 

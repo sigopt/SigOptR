@@ -18,6 +18,6 @@ suggestion created by SigOpt
 Create a suggestion for an experiment
 }
 \examples{
-create_suggestion(5807)
+create_suggestion(5812)
 }
 
