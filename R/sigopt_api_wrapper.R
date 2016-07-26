@@ -23,7 +23,14 @@ create_experiment <- function(body) {
 #' @return SigOpt experiment with id experiment_id
 #' @export
 #' @examples
-#' fetch_experiment(5812)
+#' experiment <- create_experiment(list(
+#'   name="R test experiment",
+#'   parameters=list(
+#'     list(name="x1", type="double", bounds=list(min=0, max=100)),
+#'     list(name="x2", type="double", bounds=list(min=0, max=100))
+#'   )
+#' ))
+#' fetch_experiment(experiment$id)
 fetch_experiment <- function(experiment_id, body=NULL) {
   req <- sigopt_GET(paste("v1/experiments", experiment_id, sep="/"), body)
   sigopt_parse(req)
@@ -36,7 +43,14 @@ fetch_experiment <- function(experiment_id, body=NULL) {
 #' @return suggestion created by SigOpt
 #' @export
 #' @examples
-#' create_suggestion(5812)
+#' experiment <- create_experiment(list(
+#'   name="R test experiment",
+#'   parameters=list(
+#'     list(name="x1", type="double", bounds=list(min=0, max=100)),
+#'     list(name="x2", type="double", bounds=list(min=0, max=100))
+#'   )
+#' ))
+#' create_suggestion(experiment$id)
 create_suggestion <- function(experiment_id, body=NULL) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "suggestions", sep="/"), body)
   sigopt_parse(req)
@@ -49,8 +63,16 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #' @return observation created by SigOpt
 #' @export
 #' @examples
-#' create_observation(5812, list(suggestion=1830795, value=99.08))
-#' create_observation(5812, list(suggestion=1830795, value=99.58, value_stddev=0.1))
+#' experiment <- create_experiment(list(
+#'   name="R test experiment",
+#'   parameters=list(
+#'     list(name="x1", type="double", bounds=list(min=0, max=100)),
+#'     list(name="x2", type="double", bounds=list(min=0, max=100))
+#'   )
+#' ))
+#' suggestion <- create_suggestion(experiment$id)
+#' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.08))
+#' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.58, value_stddev=0.1))
 create_observation <- function(experiment_id, body) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "observations", sep="/"), body)
   sigopt_parse(req)

@@ -18,7 +18,15 @@ observation created by SigOpt
 Create an observation for an experiment
 }
 \examples{
-create_observation(5812, list(suggestion=1830795, value=99.08))
-create_observation(5812, list(suggestion=1830795, value=99.58, value_stddev=0.1))
+experiment <- create_experiment(list(
+  name="R test experiment",
+  parameters=list(
+    list(name="x1", type="double", bounds=list(min=0, max=100)),
+    list(name="x2", type="double", bounds=list(min=0, max=100))
+  )
+))
+suggestion <- create_suggestion(experiment$id)
+create_observation(experiment$id, list(suggestion=suggestion$id, value=99.08))
+create_observation(experiment$id, list(suggestion=suggestion$id, value=99.58, value_stddev=0.1))
 }
 
