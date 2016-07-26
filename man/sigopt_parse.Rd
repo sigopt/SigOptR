@@ -17,7 +17,7 @@ Parse content returned by the SigOpt API
 }
 \examples{
 sigopt_parse(sigopt_GET("v1/experiments", null))
-sigopt_parse(sigopt_POST("v1/experiments/2318/suggestions", null))
+sigopt_parse(sigopt_POST("v1/experiments/5807/suggestions", null))
 }
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally

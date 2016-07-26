@@ -21,7 +21,7 @@ GET request to SigOpt API path, with json encoded body
 }
 \examples{
 sigopt_GET('/v1/experiments')
-sigopt_GET('/v1/experiments/2269/suggestions', query=list(state="open"))
+sigopt_GET('/v1/experiments/5807/suggestions', query=list(state="open"))
 }
 \seealso{
 \code{\link{sigopt_parse}}, which parses the result of this function
