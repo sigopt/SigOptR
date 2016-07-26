@@ -4,7 +4,7 @@
 \alias{sigopt_GET}
 \title{GET request to SigOpt API path, with json encoded body}
 \usage{
-sigopt_GET(path, query = NULL, ..., api_token = sigopt_api_token())
+sigopt_GET(path, query = NULL, api_token = sigopt_api_token())
 }
 \arguments{
 \item{path}{path of SigOpt API url to POST to}
@@ -18,10 +18,6 @@ result of request to SigOpt API, needs to be JSON decoded
 }
 \description{
 GET request to SigOpt API path, with json encoded body
-}
-\examples{
-sigopt_GET('/v1/experiments')
-sigopt_GET('/v1/experiments/2269/suggestions', query=list(state="open"))
 }
 \seealso{
 \code{\link{sigopt_parse}}, which parses the result of this function

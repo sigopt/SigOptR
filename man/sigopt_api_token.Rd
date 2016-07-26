@@ -15,8 +15,4 @@ SigOpt API token
 \description{
 Get the SigOpt API token from the SIGOPT_API_TOKEN environment variable or user input
 }
-\examples{
-sigopt_api_token()
-sigopt_api_token(TRUE)
-}
 

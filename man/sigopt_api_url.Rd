@@ -14,9 +14,6 @@ Base url for SigOpt API requests
 Get the SigOpt API url from the SIGOPT_API_URL environment variable or use default
 Most users will be ok with the default value
 }
-\examples{
-sigopt_api_url()
-}
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 }

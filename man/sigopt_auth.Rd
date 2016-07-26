@@ -15,8 +15,4 @@ http basic authentiation with api_token as username and no password
 \description{
 Create authentication for SigOpt API, using HTTP Basic Auth
 }
-\examples{
-sigopt_auth()
-sigopt_auth("client_token")
-}
 

@@ -4,7 +4,7 @@
 \alias{sigopt_POST}
 \title{POST request to SigOpt API path, with json encoded body}
 \usage{
-sigopt_POST(path, body, ..., api_token = sigopt_api_token())
+sigopt_POST(path, body, api_token = sigopt_api_token())
 }
 \arguments{
 \item{path}{path of SigOpt API url to POST to}
@@ -18,9 +18,6 @@ result of request to SigOpt API, needs to be JSON decoded
 }
 \description{
 POST request to SigOpt API path, with json encoded body
-}
-\examples{
-sigopt_POST("v1/experiments", NULL)
 }
 \seealso{
 \code{\link{sigopt_parse}}, which parses the result of this function
