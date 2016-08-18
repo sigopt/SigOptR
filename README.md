@@ -1,5 +1,5 @@
 # SigOpt R API
-SigOpt's public R client.
+The [SigOpt](https://sigopt.com) public R client.
 
 Learn more about SigOpt and R from our [docs](https://sigopt.com/docs/overview/R).
 
