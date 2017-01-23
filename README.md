@@ -60,7 +60,7 @@ create_observation(experiment$id, list(suggestion=suggestion$id, value=value, va
 
 # Endpoints
 
-SigOptR supports a subset of API enpoints:
+SigOptR supports a subset of API endpoints:
  - `create_experiment`
  - `create_suggestion`
  - `create_observation`
