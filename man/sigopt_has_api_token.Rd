@@ -15,4 +15,3 @@ Whether or not the SigOpt API token is properly configured
 \seealso{
 \code{\link{sigopt_api_token}}, which this function uses to get the SigOpt API token
 }
-

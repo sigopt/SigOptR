@@ -1,3 +1,4 @@
+SIGOPT_TEST_API_KEY="UUEIBDHJUTKWOUAWSKBWFGLQSFYLQNJKZXAJVVSYNOQITYVK"
 #' Create an experiment
 #'
 #' @param body POST body of create request
@@ -150,25 +151,23 @@ sigopt_parse <- function(req) {
 #' @return SigOpt API token
 sigopt_api_token <- function(force = FALSE) {
   env <- Sys.getenv("SIGOPT_API_TOKEN")
-  if (!identical(env, "") && !force) return(env)
 
-  if (!interactive()) {
-    stop("Please set env var SIGOPT_API_TOKEN to your SigOpt API token",
-      call. = FALSE)
+  if (!interactive() && identical(env, "")) {
+    api_token <- SIGOPT_TEST_API_KEY
+    message("Couldn't find env var SIGOPT_API_TOKEN. See ?sigopt_api_token for more details.")
   }
 
-  message("Couldn't find env var SIGOPT_API_TOKEN. See ?sigopt_api_token for more details.")
-  message("Please enter your API_TOKEN and press enter:")
-  api_token <- readline(": ")
-
-  if (identical(api_token, "")) {
-    stop("SigOpt API token entry failed", call. = FALSE)
+  if (!identical(env, "") && !force) {
+    api_token <- env
   }
 
-  message("Updating SIGOPT_API_TOKEN env var to API_TOKEN")
-  Sys.setenv(SIGOPT_API_TOKEN = api_token)
 
-  api_token
+  if (force) {
+    message("Please enter your API_TOKEN and press enter:")
+    api_token <- readline(": ")
+  }
+
+  return(api_token)
 }
 
 #' Whether or not the SigOpt API token is properly configured
@@ -190,10 +189,10 @@ sigopt_api_url <- function() {
   "https://api.sigopt.com"
 }
 
-#' User agent for current version of SigOptR API Client
+#' User agent for current version of SigOpt R API Client
 #'
 #' @return User agent
 #' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 sigopt_api_user_agent <- function() {
-  httr::user_agent("SigOptR/1.0.0")
+  httr::user_agent("SigOptR/0.0.1")
 }

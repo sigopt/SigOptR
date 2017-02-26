@@ -2,7 +2,7 @@
 % Please edit documentation in R/sigopt_api_wrapper.R
 \name{sigopt_api_user_agent}
 \alias{sigopt_api_user_agent}
-\title{User agent for current version of SigOptR API Client}
+\title{User agent for current version of SigOpt R API Client}
 \usage{
 sigopt_api_user_agent()
 }
@@ -10,9 +10,8 @@ sigopt_api_user_agent()
 User agent
 }
 \description{
-User agent for current version of SigOptR API Client
+User agent for current version of SigOpt R API Client
 }
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 }
-

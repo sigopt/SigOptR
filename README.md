@@ -1,7 +1,7 @@
 # SigOpt R API
 The [SigOpt](https://sigopt.com) public R client.
 
-Learn more about SigOpt and R from our [docs](https://sigopt.com/docs/overview/R).
+Learn more about SigOpt and R from our [docs](https://sigopt.com/docs/overview/r).
 
 # Installation
 
@@ -60,7 +60,7 @@ create_observation(experiment$id, list(suggestion=suggestion$id, value=value, va
 
 # Endpoints
 
-SigOptR supports a subset of API endpoints:
+`SigOptR` supports a subset of API endpoints:
  - `create_experiment`
  - `create_suggestion`
  - `create_observation`

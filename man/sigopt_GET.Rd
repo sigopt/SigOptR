@@ -22,4 +22,3 @@ GET request to SigOpt API path, with json encoded body
 \seealso{
 \code{\link{sigopt_parse}}, which parses the result of this function
 }
-

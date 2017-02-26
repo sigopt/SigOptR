@@ -29,4 +29,3 @@ suggestion <- create_suggestion(experiment$id)
 create_observation(experiment$id, list(suggestion=suggestion$id, value=99.08))
 create_observation(experiment$id, list(suggestion=suggestion$id, value=99.58, value_stddev=0.1))
 }
-
