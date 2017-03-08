@@ -4,13 +4,17 @@
 #' @return experiment created by SigOpt
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
 #'     list(name="x1", type="double", bounds=list(min=0, max=100)),
 #'     list(name="x2", type="double", bounds=list(min=0, max=100))
 #'   )
-#' ))
+#' ))}
 create_experiment <- function(body) {
   req <- sigopt_POST("v1/experiments", body)
   sigopt_parse(req)
@@ -23,6 +27,10 @@ create_experiment <- function(body) {
 #' @return SigOpt experiment with id experiment_id
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' experiment <- create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
@@ -30,7 +38,7 @@ create_experiment <- function(body) {
 #'     list(name="x2", type="double", bounds=list(min=0, max=100))
 #'   )
 #' ))
-#' fetch_experiment(experiment$id)
+#' fetch_experiment(experiment$id)}
 fetch_experiment <- function(experiment_id, body=NULL) {
   req <- sigopt_GET(paste("v1/experiments", experiment_id, sep="/"), body)
   sigopt_parse(req)
@@ -43,6 +51,10 @@ fetch_experiment <- function(experiment_id, body=NULL) {
 #' @return suggestion created by SigOpt
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' experiment <- create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
@@ -50,7 +62,7 @@ fetch_experiment <- function(experiment_id, body=NULL) {
 #'     list(name="x2", type="double", bounds=list(min=0, max=100))
 #'   )
 #' ))
-#' create_suggestion(experiment$id)
+#' create_suggestion(experiment$id)}
 create_suggestion <- function(experiment_id, body=NULL) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "suggestions", sep="/"), body)
   sigopt_parse(req)
@@ -63,6 +75,10 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #' @return observation created by SigOpt
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' experiment <- create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
@@ -72,7 +88,7 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #' ))
 #' suggestion <- create_suggestion(experiment$id)
 #' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.08))
-#' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.58, value_stddev=0.1))
+#' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.58, value_stddev=0.1))}
 create_observation <- function(experiment_id, body) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "observations", sep="/"), body)
   sigopt_parse(req)
@@ -171,12 +187,6 @@ sigopt_api_token <- function(force = FALSE) {
   api_token
 }
 
-#' Whether or not the SigOpt API token is properly configured
-#' @return TRUE or FALSE
-#' @seealso \code{\link{sigopt_api_token}}, which this function uses to get the SigOpt API token
-#' @export
-sigopt_has_api_token <- function() !identical(sigopt_api_token(), "")
-
 #' Get the SigOpt API url from the SIGOPT_API_URL environment variable or use default
 #' Most users will be ok with the default value
 #'
@@ -190,10 +200,10 @@ sigopt_api_url <- function() {
   "https://api.sigopt.com"
 }
 
-#' User agent for current version of SigOptR API Client
+#' User agent for current version of SigOpt R API Client
 #'
 #' @return User agent
 #' @seealso \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 sigopt_api_user_agent <- function() {
-  httr::user_agent("SigOptR/1.0.0")
+  httr::user_agent("SigOptR/0.0.1")
 }
