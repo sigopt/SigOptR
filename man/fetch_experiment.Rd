@@ -18,6 +18,10 @@ SigOpt experiment with id experiment_id
 Fetch an experiment
 }
 \examples{
+env <- Sys.getenv("NOT_CRAN")
+if (!identical(env, "true")) {
+0
+} else {
 experiment <- create_experiment(list(
   name="R test experiment",
   parameters=list(
@@ -25,5 +29,5 @@ experiment <- create_experiment(list(
     list(name="x2", type="double", bounds=list(min=0, max=100))
   )
 ))
-fetch_experiment(experiment$id)
+fetch_experiment(experiment$id)}
 }

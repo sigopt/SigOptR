@@ -1,17 +1,20 @@
-SIGOPT_TEST_API_KEY="UUEIBDHJUTKWOUAWSKBWFGLQSFYLQNJKZXAJVVSYNOQITYVK"
 #' Create an experiment
 #'
 #' @param body POST body of create request
 #' @return experiment created by SigOpt
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
 #'     list(name="x1", type="double", bounds=list(min=0, max=100)),
 #'     list(name="x2", type="double", bounds=list(min=0, max=100))
 #'   )
-#' ))
+#' ))}
 create_experiment <- function(body) {
   req <- sigopt_POST("v1/experiments", body)
   sigopt_parse(req)
@@ -24,6 +27,10 @@ create_experiment <- function(body) {
 #' @return SigOpt experiment with id experiment_id
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' experiment <- create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
@@ -31,7 +38,7 @@ create_experiment <- function(body) {
 #'     list(name="x2", type="double", bounds=list(min=0, max=100))
 #'   )
 #' ))
-#' fetch_experiment(experiment$id)
+#' fetch_experiment(experiment$id)}
 fetch_experiment <- function(experiment_id, body=NULL) {
   req <- sigopt_GET(paste("v1/experiments", experiment_id, sep="/"), body)
   sigopt_parse(req)
@@ -44,6 +51,10 @@ fetch_experiment <- function(experiment_id, body=NULL) {
 #' @return suggestion created by SigOpt
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' experiment <- create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
@@ -51,7 +62,7 @@ fetch_experiment <- function(experiment_id, body=NULL) {
 #'     list(name="x2", type="double", bounds=list(min=0, max=100))
 #'   )
 #' ))
-#' create_suggestion(experiment$id)
+#' create_suggestion(experiment$id)}
 create_suggestion <- function(experiment_id, body=NULL) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "suggestions", sep="/"), body)
   sigopt_parse(req)
@@ -64,6 +75,10 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #' @return observation created by SigOpt
 #' @export
 #' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
 #' experiment <- create_experiment(list(
 #'   name="R test experiment",
 #'   parameters=list(
@@ -73,7 +88,7 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #' ))
 #' suggestion <- create_suggestion(experiment$id)
 #' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.08))
-#' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.58, value_stddev=0.1))
+#' create_observation(experiment$id, list(suggestion=suggestion$id, value=99.58, value_stddev=0.1))}
 create_observation <- function(experiment_id, body) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "observations", sep="/"), body)
   sigopt_parse(req)
@@ -151,30 +166,26 @@ sigopt_parse <- function(req) {
 #' @return SigOpt API token
 sigopt_api_token <- function(force = FALSE) {
   env <- Sys.getenv("SIGOPT_API_TOKEN")
+  if (!identical(env, "") && !force) return(env)
 
-  if (!interactive() && identical(env, "")) {
-    api_token <- SIGOPT_TEST_API_KEY
-    message("Couldn't find env var SIGOPT_API_TOKEN. See ?sigopt_api_token for more details.")
+  if (!interactive()) {
+    stop("Please set env var SIGOPT_API_TOKEN to your SigOpt API token",
+      call. = FALSE)
   }
 
-  if (!identical(env, "") && !force) {
-    api_token <- env
+  message("Couldn't find env var SIGOPT_API_TOKEN. See ?sigopt_api_token for more details.")
+  message("Please enter your API_TOKEN and press enter:")
+  api_token <- readline(": ")
+
+  if (identical(api_token, "")) {
+    stop("SigOpt API token entry failed", call. = FALSE)
   }
 
+  message("Updating SIGOPT_API_TOKEN env var to API_TOKEN")
+  Sys.setenv(SIGOPT_API_TOKEN = api_token)
 
-  if (force) {
-    message("Please enter your API_TOKEN and press enter:")
-    api_token <- readline(": ")
-  }
-
-  return(api_token)
+  api_token
 }
-
-#' Whether or not the SigOpt API token is properly configured
-#' @return TRUE or FALSE
-#' @seealso \code{\link{sigopt_api_token}}, which this function uses to get the SigOpt API token
-#' @export
-sigopt_has_api_token <- function() !identical(sigopt_api_token(), "")
 
 #' Get the SigOpt API url from the SIGOPT_API_URL environment variable or use default
 #' Most users will be ok with the default value
