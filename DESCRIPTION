@@ -2,8 +2,8 @@ Package: SigOptR
 Title: R API Wrapper for SigOpt
 Version: 0.0.1
 Author: Alexandra Johnson [aut, cre]
-Maintainer: SigOpt Support <support@sigopt.com>
-Description: A client library which interfaces with the SigOpt API, providing access to the SigOpt optimization. More info at www.sigopt.com.
+Maintainer: Alexandra Johnson <alexandra@sigopt.com>
+Description: Interfaces with the 'SigOpt' API. More info at <https://sigopt.com>.
 Imports: httr, jsonlite
 Depends: R (>= 3.2.0)
 License: MIT + file LICENSE
