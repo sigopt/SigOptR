@@ -18,3 +18,4 @@ Parse content returned by the SigOpt API
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which call this function interally
 }
+

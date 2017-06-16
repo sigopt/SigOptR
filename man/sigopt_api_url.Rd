@@ -17,3 +17,4 @@ Most users will be ok with the default value
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 }
+

@@ -20,3 +20,4 @@ Franke function - http://www.sfu.ca/~ssurjano/franke2d.html
 \examples{
 franke(0,1)
 }
+

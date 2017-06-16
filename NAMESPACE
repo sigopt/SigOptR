@@ -2,6 +2,7 @@
 
 export(create_experiment)
 export(create_observation)
+export(create_queued_suggestion)
 export(create_suggestion)
 export(fetch_experiment)
 export(franke)
