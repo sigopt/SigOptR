@@ -3,9 +3,13 @@ Title: R API Wrapper for SigOpt
 Version: 0.0.1
 Author: Alexandra Johnson [aut, cre]
 Maintainer: Alexandra Johnson <alexandra@sigopt.com>
-Description: Interfaces with the 'SigOpt' API. More info at <https://sigopt.com>.
-Imports: httr, jsonlite
-Depends: R (>= 3.2.0)
+Description: Interfaces with the 'SigOpt' API. More info at <https://
+    sigopt.com>.
+Imports:
+    httr,
+    jsonlite
+Depends:
+    R (>= 3.2.0)
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 5.0.1.9000

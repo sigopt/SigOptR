@@ -15,3 +15,4 @@ User agent for current version of SigOpt R API Client
 \seealso{
 \code{\link{sigopt_GET}} and \code{\link{sigopt_POST}}, which perform the HTTP requests
 }
+

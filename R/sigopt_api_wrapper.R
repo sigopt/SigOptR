@@ -68,6 +68,31 @@ create_suggestion <- function(experiment_id, body=NULL) {
   sigopt_parse(req)
 }
 
+#' Create a queued suggestion for an experiment
+#'
+#' @param experiment_id the id of an experiment to create a queued suggestion for
+#' @param body POST body of create request
+#' @return queued suggestion created by SigOpt
+#' @export
+#' @examples
+#' env <- Sys.getenv("NOT_CRAN")
+#' if (!identical(env, "true")) {
+#' 0
+#' } else {
+#' experiment <- create_experiment(list(
+#'   name="R test experiment",
+#'   parameters=list(
+#'     list(name="x1", type="double", bounds=list(min=0, max=100)),
+#'     list(name="x2", type="double", bounds=list(min=0, max=100))
+#'   )
+#' ))
+#' create_queued_suggestion(experiment$id)}
+create_queued_suggestion <- function(experiment_id, body=NULL) {
+  req <- sigopt_POST(paste("v1/experiments", experiment_id, "queued_suggestions", sep="/"), body)
+  sigopt_parse(req)
+}
+
+
 #' Create an observation for an experiment
 #'
 #' @param experiment_id the id of an experiment to create an observation for
