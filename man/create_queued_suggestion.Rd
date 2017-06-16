@@ -29,6 +29,6 @@ experiment <- create_experiment(list(
     list(name="x2", type="double", bounds=list(min=0, max=100))
   )
 ))
-create_queued_suggestion(experiment$id)}
+create_queued_suggestion(experiment$id, list(assignments=list(x1=2, x2=3)))}
 }
 
