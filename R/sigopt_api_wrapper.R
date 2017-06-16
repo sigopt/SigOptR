@@ -86,7 +86,7 @@ create_suggestion <- function(experiment_id, body=NULL) {
 #'     list(name="x2", type="double", bounds=list(min=0, max=100))
 #'   )
 #' ))
-#' create_queued_suggestion(experiment$id)}
+#' create_queued_suggestion(experiment$id, list(assignments=list(x1=2, x2=3)))}
 create_queued_suggestion <- function(experiment_id, body=NULL) {
   req <- sigopt_POST(paste("v1/experiments", experiment_id, "queued_suggestions", sep="/"), body)
   sigopt_parse(req)
