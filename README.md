@@ -14,7 +14,7 @@ library(SigOptR)
 
 # Authentication
 
-Set the environment variable `SIGOPT_API_TOKEN` to the value of the API Token found on the [user dashboard](https://sigopt.com/user/profile) of signed in users.
+Set the environment variable `SIGOPT_API_TOKEN` to the value of the API Token found on the [API tokens page](https://sigopt.com/tokens) (you may have to sign in).
 
 ```
 Sys.setenv(SIGOPT_API_TOKEN=sigopt_api_token)
