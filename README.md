@@ -66,3 +66,7 @@ create_observation(experiment$id, list(suggestion=suggestion$id, value=value, va
  - `create_observation`
 
 These should be sufficient to run SigOpt's [Optimization Loop](https://sigopt.com/docs/overview/optimization).
+
+## General Information
+
+Repository: 2016-2022
