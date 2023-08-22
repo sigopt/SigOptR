@@ -69,4 +69,4 @@ These should be sufficient to run SigOpt's [Optimization Loop](https://sigopt.co
 
 ## General Information
 
-Repository: 2016-2022
+Repository: 2016-2023
